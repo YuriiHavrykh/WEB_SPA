@@ -81,18 +81,25 @@ body {
 }
 
 .status-badge {
-  padding: 5px 10px;
+  padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-size: 0.85rem;
-  font-weight: bold;
-}
-.status-badge.warning {
-  background-color: #fef9e7;
-  color: #f39c12;
+  font-weight: 600;
+  color: white;
+  display: inline-block;
 }
 .status-badge.success {
-  background-color: #eafaf1;
-  color: #2ecc71;
+  background-color: #28a745;
+}
+.status-badge.warning {
+  background-color: #ffc107;
+  color: #333;
+}
+.status-badge.error {
+  background-color: #dc3545;
+}
+.status-badge.info {
+  background-color: #17a2b8;
 }
 
 .btn-edit {

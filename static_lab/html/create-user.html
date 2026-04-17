@@ -2,46 +2,62 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Створити користувача - Car Service</title>
+    <title>Додати працівника - AutoService Manager</title>
     <link rel="stylesheet" href="../css/user.css">
 </head>
 <body>
     <main class="create-user-page">
         <form class="create-user-form">
-            <h2>Створити користувача</h2>
+            <h2>Реєстрація нового працівника</h2>
 
             <div class="create-user-form__field">
-                <label for="username">Ім'я користувача (Логін)</label>
-                <input type="text" id="username" name="username" placeholder="Введіть логін" required>
+                <label for="username">Логін (ID)</label>
+                <input type="text" id="username" name="username" placeholder="Наприклад: ivan_ivanov">
             </div>
 
             <div class="create-user-form__field">
-                <label for="password">Пароль</label>
-                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                <label for="full_name">ПІБ</label>
+                <input type="text" id="full_name" name="full_name" placeholder="Введіть повне ім'я">
             </div>
 
             <div class="create-user-form__field">
-                <label for="confirm-password">Підтвердження пароля</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required>
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" placeholder="+380 _________">
             </div>
 
             <div class="create-user-form__field">
                 <label for="role">Роль у системі</label>
                 <select id="role" name="role">
-                    <option value="admin">Адміністратор мережі</option>
-                    <option value="manager">Менеджер СТО</option>
-                    <option value="mechanic">Майстер-механік</option>
-                    <option value="stockkeeper">Комірник</option>
+                    <option value="" disabled selected>Оберіть роль...</option>
+                    <option value="admin">Адміністратор</option>
+                    <option value="manager">Менеджер</option>
+                    <option value="mechanic">Механік</option>
+                </select>
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="service-center">СТО (Філія)</label>
+                <select id="service-center" name="service-center">
+                    <option value="" disabled selected>Оберіть локацію...</option>
+                    <option value="1">Львів, вул. Наукова 7</option>
+                    <option value="2">Київ, пр. Перемоги 15</option>
+                    <option value="3">Одеса, вул. Дерибасівська 1</option>
+                </select>
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="status">Початковий статус</label>
+                <select id="status" name="status">
+                    <option value="active" selected>Активний</option>
+                    <option value="vacation">У відпустці</option>
+                    <option value="blocked">Заблокований</option>
                 </select>
             </div>
 
             <div class="create-user-form__actions">
-                <button type="submit">Ок</button>
-                <button type="button">Скасувати</button>
+                <button type="submit" class="btn-save">Створити</button>
+                <button type="button" class="btn-cancel" onclick="window.history.back()">Скасувати</button>
             </div>
-
-            <p class="create-user-form__error">Паролі не збігаються</p>
         </form>
     </main>
 </body>

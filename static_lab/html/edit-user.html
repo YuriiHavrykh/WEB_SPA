@@ -2,8 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Редагувати користувача - AutoService Manager</title>
+    <title>Редагувати працівника - AutoService Manager</title>
     <link rel="stylesheet" href="../css/user.css">
 </head>
 <body>
@@ -12,41 +11,46 @@
             <h2>Редагувати дані працівника</h2>
 
             <div class="create-user-form__field">
-                <label for="username">Логін (неможливо змінити)</label>
-                <input type="text" id="username" name="username" value="yurii_havrykh" readonly style="background-color: #f0f0f0;">
+                <label>Логін</label>
+                <input type="text" value="yurii_havrykh" readonly style="background-color: #f0f0f0;">
             </div>
 
             <div class="create-user-form__field">
-                <label for="password">Новий пароль (залишіть порожнім, якщо не змінюєте)</label>
-                <input type="password" id="password" name="password" placeholder="••••••••">
+                <label>Телефон</label>
+                <input type="tel" value="+380 67 111 22 33">
             </div>
 
             <div class="create-user-form__field">
-                <label for="role">Роль у системі</label>
-                <select id="role" name="role">
-                    <option value="admin" selected>Адміністратор мережі</option>
-                    <option value="manager">Менеджер СТО</option>
-                    <option value="mechanic">Майстер-механік</option>
-                    <option value="stockkeeper">Комірник</option>
+                <label>Роль</label>
+                <select>
+                    <option selected>Адміністратор</option>
+                    <option>Менеджер</option>
+                    <option>Механік</option>
+                </select>
+            </div>
+
+            <div class="create-user-form__field">
+                <label>СТО (Філія)</label>
+                <select>
+                    <option selected>Львів, вул. Наукова 7</option>
+                    <option>Київ, пр. Перемоги 15</option>
+                </select>
+            </div>
+
+            <div class="create-user-form__field">
+                <label>Статус</label>
+                <select>
+                    <option selected>Активний</option>
+                    <option>У відпустці</option>
+                    <option>Звільнений</option>
                 </select>
             </div>
 
             <div class="create-user-form__actions">
-    <button type="submit" class="btn-save">Зберегти зміни</button>
-    <button type="button" class="btn-delete-action" onclick="confirmDelete()">Видалити працівника</button>
-    <button type="button" class="btn-cancel" onclick="window.history.back()">Скасувати</button>
-</div>
-
-<div id="delete-modal" class="modal-overlay" style="display: none;">
-    <div class="modal-content">
-        <h3>Підтвердження видалення</h3>
-        <p>Ви впевнені, що хочете видалити працівника <strong>yurii_havrykh</strong>? Цю дію неможливо буде скасувати.</p>
-        <div class="modal-actions">
-            <button class="btn-confirm-delete">Так, видалити</button>
-            <button class="btn-cancel" onclick="closeModal()">Скасувати</button>
-        </div>
-    </div>
-</div>
+                <button type="submit" class="btn-save">Зберегти</button>
+                <button type="button" class="btn-delete-action">Видалити</button>
+                <button type="button" class="btn-cancel" onclick="window.history.back()">Скасувати</button>
+            </div>
         </form>
     </main>
 </body>

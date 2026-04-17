@@ -10,7 +10,7 @@
         <nav class="container">
             <div class="logo">AutoService <span>Manager</span></div>
             <ul class="nav-links">
-                <li><a href="users.html"class="active">Персонал</a></li>
+                <li><a href="users.html" class="active">Персонал</a></li>
                 <li><a href="repairs.html">Ремонти</a></li>
                 <li><a href="parts.html">Каталог</a></li>
                 <li><a href="centers.html">СТО</a></li>
@@ -26,24 +26,51 @@
         </section>
 
         <section class="table-container">
-            <table class="data-table"> <thead>
+            <table class="data-table">
+                <thead>
                     <tr>
-                        <th>ID</th>
                         <th>ПІБ</th>
+                        <th>Телефон</th>
                         <th>Роль</th>
+                        <th>СТО (Філія)</th>
+                        <th>Статус</th>
                         <th>Дії</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Гаврих Юрій</td>
-                        <td><span class="status-badge success">Адміністратор</span></td>
-                        <td>
-                            <button class="btn-edit">Редагувати</button>
-                        </td>
-                    </tr>
-                </tbody>
+    <tr>
+        <td>Гаврих Юрій</td>
+        <td>+380 67 111 22 33</td>
+        <td>Адміністратор</td>
+        <td>Львів, вул. Наукова 7</td>
+        <td><span class="status-badge success">Активний</span></td>
+        <td><a href="edit-user.html" class="btn-edit">Редагувати</a></td>
+    </tr>
+    <tr>
+        <td>Мельник Олександр</td>
+        <td>+380 50 444 55 66</td>
+        <td>Менеджер СТО</td>
+        <td>Київ, пр. Перемоги 15</td>
+        <td><span class="status-badge success">Активний</span></td>
+        <td><a href="edit-user.html" class="btn-edit">Редагувати</a></td>
+    </tr>
+    <tr>
+        <td>Коваленко Дмитро</td>
+        <td>+380 63 777 88 99</td>
+        <td>Майстер-механік</td>
+        <td>Львів, вул. Наукова 7</td>
+        <td><span class="status-badge warning">У відпустці</span></td>
+        <td><a href="edit-user.html" class="btn-edit">Редагувати</a></td>
+    </tr>
+    <tr>
+        <td>Сидоренко Анна</td>
+        <td>+380 97 000 11 22</td>
+        <td>Комірник</td>
+        <td>Одеса, вул. Дерибасівська 1</td>
+        <td><span class="status-badge error">Звільнений</span></td>
+        <td><a href="edit-user.html" class="btn-edit">Редагувати</a></td>
+    </tr>
+</tbody>
             </table>
         </section>
     </main>
