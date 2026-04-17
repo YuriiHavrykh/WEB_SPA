@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Створити користувача - Car Service</title>
+    <link rel="stylesheet" href="../css/user.css">
+</head>
+<body>
+    <main class="create-user-page">
+        <form class="create-user-form">
+            <h2>Створити користувача</h2>
+
+            <div class="create-user-form__field">
+                <label for="username">Ім'я користувача (Логін)</label>
+                <input type="text" id="username" name="username" placeholder="Введіть логін" required>
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="confirm-password">Підтвердження пароля</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required>
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="role">Роль у системі</label>
+                <select id="role" name="role">
+                    <option value="admin">Адміністратор мережі</option>
+                    <option value="manager">Менеджер СТО</option>
+                    <option value="mechanic">Майстер-механік</option>
+                    <option value="stockkeeper">Комірник</option>
+                </select>
+            </div>
+
+            <div class="create-user-form__actions">
+                <button type="submit">Ок</button>
+                <button type="button">Скасувати</button>
+            </div>
+
+            <p class="create-user-form__error">Паролі не збігаються</p>
+        </form>
+    </main>
+</body>
+</html>

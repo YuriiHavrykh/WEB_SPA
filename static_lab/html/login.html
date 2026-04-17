@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід - AutoService Manager</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="login-body">
+    <main class="login-screen">
+        <section class="login-card">
+            <header class="login-card__header">
+                <h1>AutoService <span>Manager</span></h1>
+            </header>
+            
+            <form action="users.html" class="login-form">
+                <div class="input-group">
+                    <label for="user-login">Логін</label>
+                    <input type="text" id="user-login" name="login" placeholder="Введіть ваш логін" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="user-pass">Пароль</label>
+                    <input type="password" id="user-pass" name="password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="login-btn">Увійти в систему</button>
+            </form>
+            
+            <footer class="login-card__footer">
+                <p>&copy; 2026 Мережа Автосервісів. Лабораторна робота №1.</p>
+            </footer>
+        </section>
+    </main>
+</body>
+</html>

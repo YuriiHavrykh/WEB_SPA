@@ -1,29 +1,33 @@
-from django.db.models import Count, Sum, F, Func
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-
-import pandas as pd
+from rest_framework.pagination import PageNumberPagination
 
 from car_service.repositories.RepositoryManager import RepositoryManager
 from .serializer import *
-from car_service.models import Repair, RepairDetail
 
 rm = RepositoryManager()
 
-
-class BaseViewSet(viewsets.GenericViewSet):
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 100
+class BaseViewSet(viewsets.ViewSet):
     serializer_class = None
     repo = None
+    # authentication_classes = [BasicAuthentication]
+    # permission_classes = [IsAuthenticated]
     authentication_classes = []
     permission_classes = []
 
     def list(self, request):
-        items = self.repo.get_all()[:1000]
-        ser = self.serializer_class(items, many=True)
-        return Response(ser.data)
+        items = self.repo.get_all()
+
+        paginator = StandardResultsSetPagination()
+        page = paginator.paginate_queryset(items, request)
+
+        ser = self.serializer_class(page, many=True)
+        return paginator.get_paginated_response(ser.data)
 
     def retrieve(self, request, pk=None):
         item = self.repo.get_by_id(pk)
@@ -95,94 +99,27 @@ class RepairViewSet(BaseViewSet):
     serializer_class = RepairSerialize
     repo = rm.repair
 
-    def get_queryset(self):
-        return Repair.objects.none()
-
-    @action(detail=False, methods=['get'], url_path='analytics/repairs-by-center')
-    def repairs_by_center_df(self, request):
-        min_repairs = request.query_params.get('min_repairs', 1)
-        qs = self.repo.repairs_count_by_service_center()
-
-        df = pd.DataFrame(list(qs))
-        if df.empty: return Response({"data": [], "stats": {}}, status=status.HTTP_204_NO_CONTENT)
-
-        try:
-            min_repairs = int(min_repairs)
-            df = df[df['total_repairs'] >= min_repairs]
-        except ValueError:
-            pass
-
-        df.columns = ['ServiceCenter', 'TotalRepairs']
-        stats = {"mean": df['TotalRepairs'].mean(), "median": df['TotalRepairs'].median(),
-                 "min": df['TotalRepairs'].min(), "max": df['TotalRepairs'].max()}
-        return Response({"data": df.to_dict(orient='records'), "stats": stats})
-
-    @action(detail=False, methods=['get'], url_path='analytics/avg-parts-per-center')
-    def avg_parts_per_repair_by_center_df(self, request):
-        qs = self.repo.avg_parts_per_repair_by_center()
-        df = pd.DataFrame(list(qs))
-        if df.empty: return Response({"data": [], "stats": {}}, status=status.HTTP_204_NO_CONTENT)
-        df.columns = ['ServiceCenter', 'AvgParts']
-        stats = {"mean": df['AvgParts'].mean(), "median": df['AvgParts'].median(), "min": df['AvgParts'].min(),
-                 "max": df['AvgParts'].max()}
-        return Response({"data": df.to_dict(orient='records'), "stats": stats})
-
-    @action(detail=False, methods=['get'], url_path='analytics/repairs-by-month')
-    def repairs_by_month_df(self, request):
-        qs = self.repo.repairs_by_month()
-        df = pd.DataFrame(list(qs))
-        if df.empty: return Response({"data": [], "stats": {}}, status=status.HTTP_204_NO_CONTENT)
-
-        df['month'] = pd.to_datetime(df['month'])
-        df['month'] = df['month'].dt.strftime('%Y-%m')
-
-        df.columns = ['Month', 'TotalRepairs']
-        stats = {"mean": df['TotalRepairs'].mean(), "median": df['TotalRepairs'].median(),
-                 "min": df['TotalRepairs'].min(), "max": df['TotalRepairs'].max()}
-        return Response({"data": df.to_dict(orient='records'), "stats": stats})
-
-    @action(detail=False, methods=['get'], url_path='analytics/top-clients')
-    def top_clients_df(self, request):
-
-        center_id = request.query_params.get('center_id')
-        qs = self.repo.top_clients(service_center_id=center_id)
-        df = pd.DataFrame(list(qs))
-        if df.empty: return Response({"data": [], "stats": {}}, status=status.HTTP_204_NO_CONTENT)
-        df['Client'] = df['idClient__firstName'] + ' ' + df['idClient__lastName']
-
-        if center_id is None:
-            df['Client'] = df['Client'] + ' (' + df['idServiceCenter__name'] + ')'
-
-        df = df[['Client', 'total_repairs']]
-        df.columns = ['Client', 'TotalRepairs']
-
-        stats = {"mean": df['TotalRepairs'].mean(), "median": df['TotalRepairs'].median(),
-                 "min": df['TotalRepairs'].min(), "max": df['TotalRepairs'].max()}
-        return Response({"data": df.to_dict(orient='records'), "stats": stats})
-
-    @action(detail=False, methods=['get'], url_path='analytics/report')
+    @action(detail=False, methods=['get'])
     def report(self, request):
-        repairs = Repair.objects.prefetch_related('repairdetail_set__idService', 'repairdetail_set__idPart')
-        total_repairs = repairs.count()
-
+        repairs = self.repo.get_all()
+        total_repairs = len(repairs)
         total_services = sum(
-            sum(d.idService.baseCost * d.count for d in r.repairdetail_set.all() if d.idService)
+            sum(detail.idService.baseCost * detail.count for detail in r.repairdetail_set.all() if detail.idService)
             for r in repairs
         )
-        total_parts = sum(
-            sum(d.idPart.cost * d.count for d in r.repairdetail_set.all() if d.idPart)
+        total_part = sum(
+            sum(detail.idPart.cost * detail.count for detail in r.repairdetail_set.all() if detail.idPart)
             for r in repairs
         )
         total_additional = sum(
-            sum(d.additionalCost for d in r.repairdetail_set.all())
+            sum(rd.additionalCost for rd in r.repairdetail_set.all())
             for r in repairs
         )
-        grand_total = total_services + total_parts + total_additional
-
+        grand_total = total_services + total_part + total_additional
         return Response({
             "total_repairs": total_repairs,
-            "total_services": total_services,
-            "total_parts": total_parts,
+            "total_service": total_services,
+            "total_part": total_part,
             "total_additional": total_additional,
             "grand_total": grand_total
         })
@@ -191,26 +128,3 @@ class RepairViewSet(BaseViewSet):
 class RepairDetailViewSet(BaseViewSet):
     serializer_class = RepairDetailSerializer
     repo = rm.repairDetail
-
-    def get_queryset(self):
-        return RepairDetail.objects.none()
-
-    @action(detail=False, methods=['get'], url_path='analytics/service-income')
-    def service_income_df(self, request):
-        qs = self.repo.service_income()
-        df = pd.DataFrame(list(qs))
-        if df.empty: return Response({"data": [], "stats": {}}, status=status.HTTP_204_NO_CONTENT)
-        df.columns = ['ServiceName', 'TotalIncome']
-        stats = {"mean": df['TotalIncome'].mean(), "median": df['TotalIncome'].median(), "min": df['TotalIncome'].min(),
-                 "max": df['TotalIncome'].max()}
-        return Response({"data": df.to_dict(orient='records'), "stats": stats})
-
-    @action(detail=False, methods=['get'], url_path='analytics/part-income-having')
-    def part_income_df(self, request):
-        qs = self.repo.part_income()
-        df = pd.DataFrame(list(qs))
-        if df.empty: return Response({"data": [], "stats": {}}, status=status.HTTP_204_NO_CONTENT)
-        df.columns = ['PartName', 'TotalIncome']
-        stats = {"mean": df['TotalIncome'].mean(), "median": df['TotalIncome'].median(), "min": df['TotalIncome'].min(),
-                 "max": df['TotalIncome'].max()}
-        return Response({"data": df.to_dict(orient='records'), "stats": stats})

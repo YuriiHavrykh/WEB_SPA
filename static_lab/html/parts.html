@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог запчастин - AutoService Manager</title>
+    <link rel="stylesheet" href="../css/general.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="container">
+            <div class="logo">AutoService <span>Manager</span></div>
+            <ul class="nav-links">
+                <li><a href="users.html">Персонал</a></li>
+                <li><a href="repairs.html">Ремонти</a></li>
+                <li><a href="parts.html" class="active">Каталог</a></li>
+                <li><a href="centers.html">СТО</a></li>
+                <li><a href="login.html">Вихід</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-title-block">
+            <h1>Каталог запчастин та матеріалів</h1>
+            <p>Централізована база даних від дистриб'юторів</p>
+        </section>
+
+        <section class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Артикул</th>
+                        <th>Виробник</th>
+                        <th>Назва запчастини</th>
+                        <th>Ціна (грн)</th>
+                        <th>Статус</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>VAG-06B121011</td>
+                        <td>VAG (Original)</td>
+                        <td>Помпа водяна (комплект)</td>
+                        <td>2850.00</td>
+                        <td><span class="status-badge success">В наявності</span></td>
+                        <td><button class="btn-edit">Вибрати</button></td>
+                    </tr>
+                    <tr>
+                        <td>BOSCH-024223</td>
+                        <td>Bosch</td>
+                        <td>Свічка запалювання Platinum</td>
+                        <td>450.00</td>
+                        <td><span class="status-badge warning">Під замовлення</span></td>
+                        <td><button class="btn-edit">Вибрати</button></td>
+                    </tr>
+                    <tr>
+                        <td>MOTUL-104257</td>
+                        <td>Motul</td>
+                        <td>Олива 8100 X-clean 5W40 5L</td>
+                        <td>2100.00</td>
+                        <td><span class="status-badge success">В наявності</span></td>
+                        <td><button class="btn-edit">Вибрати</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

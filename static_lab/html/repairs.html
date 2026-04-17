@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Ремонти - AutoService Manager</title>
+    <link rel="stylesheet" href="../css/general.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="container">
+            <div class="logo">AutoService <span>Manager</span></div>
+            <ul class="nav-links">
+                <li><a href="users.html">Персонал</a></li>
+                <li><a href="repairs.html" class="active">Ремонти</a></li>
+                <li><a href="parts.html">Каталог</a></li>
+                <li><a href="centers.html">СТО</a></li>
+                <li><a href="login.html">Вихід</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-title-block">
+            <h1>Журнал ремонтів</h1>
+            <button class="btn-edit">Новий запис</button>
+        </section>
+
+        <section class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Автомобіль</th>
+                        <th>Держ. номер</th>
+                        <th>Статус</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Volkswagen Golf</td>
+                        <td>BC 1234 HT</td>
+                        <td><span class="status-badge warning">В роботі</span></td>
+                        <td><button class="btn-edit">Деталі</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

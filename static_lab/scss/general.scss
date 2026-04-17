@@ -1,0 +1,112 @@
+@import 'variables';
+
+// Спільні стилі для всього проекту
+body {
+    margin: 0;
+    font-family: $font-family;
+    background-color: $bg-color;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+// Стилізація меню (Header)
+.main-header {
+    background-color: $dark-bg;
+    color: $white;
+    padding: 1rem 0;
+    width: 100%;
+
+    nav {
+        display: flex;             // Вибудовуємо елементи в ряд
+        justify-content: space-between; // Лого зліва, меню справа
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $white;
+        span { color: $primary-color; }
+    }
+}
+
+// Список посилань
+.nav-links {
+    display: flex;             // Робимо список горизонтальним
+    list-style: none;          // Прибираємо крапки (маркери)
+    margin: 0;
+    padding: 0;
+    gap: 25px;                 // Відстань між пунктами меню
+
+    li {
+        margin: 0;
+    }
+
+    a {
+        color: rgba($white, 0.8); // Світло-сірий для неактивних
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: $transition; // Плавна зміна кольору 
+
+        &:hover {
+            color: $white; // Білий при наведенні 
+        }
+
+        &.active {
+            color: $primary-color; // Блакитний для поточної сторінки
+            border-bottom: 2px solid $primary-color;
+            padding-bottom: 5px;
+        }
+    }
+}
+
+// Стилізація таблиць (Data Tables)
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    @include card-style; // Використання міксина [cite: 57]
+    margin-top: 30px;
+
+    th {
+        background-color: lighten($dark-bg, 10%);
+        color: $white;
+        text-align: left;
+        padding: 15px;
+    }
+
+    td {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        color: $text-color;
+    }
+}
+
+// Статуси (Badges)
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    
+    &.warning { background-color: #fef9e7; color: #f39c12; }
+    &.success { background-color: #eafaf1; color: #2ecc71; }
+}
+
+// Кнопки дій
+.btn-edit {
+    background-color: $primary-color;
+    color: $white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover { background-color: darken($primary-color, 10%); }
+}

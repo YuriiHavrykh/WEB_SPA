@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Персонал - AutoService Manager</title>
+    <link rel="stylesheet" href="../css/general.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="container">
+            <div class="logo">AutoService <span>Manager</span></div>
+            <ul class="nav-links">
+                <li><a href="users.html"class="active">Персонал</a></li>
+                <li><a href="repairs.html">Ремонти</a></li>
+                <li><a href="parts.html">Каталог</a></li>
+                <li><a href="centers.html">СТО</a></li>
+                <li><a href="login.html">Вихід</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-title-block">
+            <h1>Керування персоналом</h1>
+            <button class="btn-edit" onclick="location.href='create-user.html'">Додати працівника</button>
+        </section>
+
+        <section class="table-container">
+            <table class="data-table"> <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ПІБ</th>
+                        <th>Роль</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Гаврих Юрій</td>
+                        <td><span class="status-badge success">Адміністратор</span></td>
+                        <td>
+                            <button class="btn-edit">Редагувати</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

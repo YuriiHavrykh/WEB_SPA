@@ -1,0 +1,80 @@
+@import 'variables';
+
+.login-body {
+    margin: 0;
+    height: 100vh;
+    background: url('../img/background.jpg') no-repeat center center;
+    background-size: cover;
+    @include flex-center; // Використання міксина [cite: 57]
+}
+
+.login-card {
+    background-color: #ffffff; // Чистий білий фон для контрасту
+    padding: 40px;
+    border-radius: $border-radius;
+    width: 100%;
+    max-width: 400px;
+    @include card-style; // Тінь та відступи [cite: 57]
+    text-align: center;
+
+    &__header {
+        margin-bottom: 30px;
+        h1 {
+            color: $dark-bg; // Темний колір для заголовка
+            margin: 0;
+            span { color: $primary-color; } // Синій акцент [cite: 55]
+        }
+    }
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left; // Текст підписів зліва
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333333; // ТЕМНИЙ колір для підписів (щоб було видно на білому)
+        font-weight: 600;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        background-color: #ffffff;
+        color: #2c3e50; // Темний текст при введенні
+        
+        // ПОСТІЙНА РАМКА [cite: 40]
+        border: 2px solid #ced4da; 
+        border-radius: 4px;
+        box-sizing: border-box;
+        transition: $transition; // Плавний перехід [cite: 49]
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color; // Синіє при кліку
+        }
+    }
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: $primary-color;
+    color: $white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+    }
+}
+
+.login-card__footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #666;
+}
