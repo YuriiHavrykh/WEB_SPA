@@ -1,0 +1,15 @@
+# Python
+venv/
+venv
+.venv/
+__pycache__/
+*.pyc
+
+# IDEs
+.idea/
+.idea
+.vscode/
+
+# OS metadata
+.DS_Store
+Thumbs.db
