@@ -95,9 +95,6 @@ body {
   background-color: #ffc107;
   color: #333;
 }
-.status-badge.error {
-  background-color: #dc3545;
-}
 .status-badge.info {
   background-color: #17a2b8;
 }

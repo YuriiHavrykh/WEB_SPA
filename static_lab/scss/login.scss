@@ -5,36 +5,36 @@
     height: 100vh;
     background: url('../img/background.jpg') no-repeat center center;
     background-size: cover;
-    @include flex-center; // Використання міксина [cite: 57]
+    @include flex-center;
 }
 
 .login-card {
-    background-color: #ffffff; // Чистий білий фон для контрасту
+    background-color: #ffffff;
     padding: 40px;
     border-radius: $border-radius;
     width: 100%;
     max-width: 400px;
-    @include card-style; // Тінь та відступи [cite: 57]
+    @include card-style;
     text-align: center;
 
     &__header {
         margin-bottom: 30px;
         h1 {
-            color: $dark-bg; // Темний колір для заголовка
+            color: $dark-bg;
             margin: 0;
-            span { color: $primary-color; } // Синій акцент [cite: 55]
+            span { color: $primary-color; }
         }
     }
 }
 
 .input-group {
     margin-bottom: 20px;
-    text-align: left; // Текст підписів зліва
+    text-align: left;
     
     label {
         display: block;
         margin-bottom: 8px;
-        color: #333333; // ТЕМНИЙ колір для підписів (щоб було видно на білому)
+        color: #333333;
         font-weight: 600;
     }
 
@@ -42,17 +42,16 @@
         width: 100%;
         padding: 12px;
         background-color: #ffffff;
-        color: #2c3e50; // Темний текст при введенні
+        color: #2c3e50; 
         
-        // ПОСТІЙНА РАМКА [cite: 40]
         border: 2px solid #ced4da; 
         border-radius: 4px;
         box-sizing: border-box;
-        transition: $transition; // Плавний перехід [cite: 49]
+        transition: $transition;
 
         &:focus {
             outline: none;
-            border-color: $primary-color; // Синіє при кліку
+            border-color: $primary-color;
         }
     }
 }

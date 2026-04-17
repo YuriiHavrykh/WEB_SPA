@@ -1,6 +1,5 @@
 @import 'variables';
 
-// Спільні стилі для всього проекту
 body {
     margin: 0;
     font-family: $font-family;
@@ -13,7 +12,6 @@ body {
     padding: 0 20px;
 }
 
-// Стилізація меню (Header)
 .main-header {
     background-color: $dark-bg;
     color: $white;
@@ -21,8 +19,8 @@ body {
     width: 100%;
 
     nav {
-        display: flex;             // Вибудовуємо елементи в ряд
-        justify-content: space-between; // Лого зліва, меню справа
+        display: flex;          
+        justify-content: space-between;
         align-items: center;
         max-width: 1200px;
         margin: 0 auto;
@@ -37,42 +35,41 @@ body {
     }
 }
 
-// Список посилань
 .nav-links {
-    display: flex;             // Робимо список горизонтальним
-    list-style: none;          // Прибираємо крапки (маркери)
+    display: flex;
+    list-style: none;
     margin: 0;
     padding: 0;
-    gap: 25px;                 // Відстань між пунктами меню
+    gap: 25px;
 
     li {
         margin: 0;
     }
 
     a {
-        color: rgba($white, 0.8); // Світло-сірий для неактивних
+        color: rgba($white, 0.8);
         text-decoration: none;
         font-weight: 500;
         font-size: 1rem;
-        transition: $transition; // Плавна зміна кольору 
+        transition: $transition;
 
         &:hover {
-            color: $white; // Білий при наведенні 
+            color: $white;
         }
 
         &.active {
-            color: $primary-color; // Блакитний для поточної сторінки
+            color: $primary-color;
             border-bottom: 2px solid $primary-color;
             padding-bottom: 5px;
         }
     }
 }
 
-// Стилізація таблиць (Data Tables)
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    @include card-style; // Використання міксина [cite: 57]
+    @include card-style;
     margin-top: 30px;
 
     th {
@@ -89,7 +86,7 @@ body {
     }
 }
 
-// Статуси (Badges)
+
 .status-badge {
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
@@ -99,12 +96,10 @@ body {
     display: inline-block;
 
     &.success { background-color: $success-color; }
-    &.warning { background-color: $warning-color; color: #333; } // Темний текст для кращої читаємості на жовтому
-    &.error { background-color: $error-color; }
+    &.warning { background-color: $warning-color; color: #333; } 
     &.info { background-color: $info-color; }
 }
 
-// Кнопки дій
 .btn-edit {
     background-color: $primary-color;
     color: $white;
