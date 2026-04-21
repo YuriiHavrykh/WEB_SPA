@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Додати працівника - AutoService Manager</title>
+    <link rel="stylesheet" href="../css/user.css">
+</head>
+<body>
+    <main class="create-user-page">
+        <form class="create-user-form">
+            <h2>Реєстрація нового працівника</h2>
+
+            <div class="create-user-form__field">
+                <label for="username">Логін (ID)</label>
+                <input type="text" id="username" name="username" placeholder="Наприклад: ivan_ivanov" autocomplete="username">
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="full_name">ПІБ</label>
+                <input type="text" id="full_name" name="full_name" placeholder="Введіть повне ім'я" autocomplete="name">
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" placeholder="Введіть пароль" autocomplete="new-password">
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="confirm-password">Підтвердження пароля</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Повторіть пароль" autocomplete="new-password">
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" placeholder="+380 _________" autocomplete="tel">
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="role">Роль у системі</label>
+                <select id="role" name="role" autocomplete="off">
+                    <option value="" disabled selected>Оберіть роль...</option>
+                    <option value="admin">Адміністратор</option>
+                    <option value="manager">Менеджер</option>
+                    <option value="mechanic">Механік</option>
+                </select>
+            </div>
+
+            <div class="create-user-form__field">
+                <label for="service-center">СТО (Філія)</label>
+                <select id="service-center" name="service-center" autocomplete="off">
+                    <option value="" disabled selected>Оберіть локацію...</option>
+                    <option value="1">Львів, вул. Наукова 7</option>
+                    <option value="2">Київ, пр. Перемоги 15</option>
+                    <option value="3">Одеса, вул. Дерибасівська 1</option>
+                </select>
+            </div>
+
+
+            <div class="create-user-form__actions">
+                <button type="submit" class="btn-save">Створити</button>
+                <button type="button" class="btn-cancel">Скасувати</button>
+            </div>
+        </form>
+    </main>
+
+    <script type="module" src="../js/main.js"></script>
+</body>
+</html>

@@ -20,6 +20,22 @@ class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = '__all__'
+        # Рядка depth = 1 тут більше НЕМАЄ!
+
+    # Ця функція замінює depth=1. Вона розгортає ID у текст ТІЛЬКИ коли сервер ВІДДАЄ дані.
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        if instance.idPosition:
+            response['idPosition'] = {
+                'idPosition': instance.idPosition.idPosition,
+                'positionName': instance.idPosition.positionName
+            }
+        if instance.idServiceCenter:
+            response['idServiceCenter'] = {
+                'idServiceCenter': instance.idServiceCenter.idServiceCenter,
+                'name': instance.idServiceCenter.name
+            }
+        return response
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -50,6 +66,7 @@ class RepairSerialize(serializers.ModelSerializer):
     class Meta:
         model = Repair
         fields = '__all__'
+        depth = 1
 
 
 class RepairDetailSerializer(serializers.ModelSerializer):
