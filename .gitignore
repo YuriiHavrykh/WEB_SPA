@@ -1,15 +1,13 @@
-# Python
 venv/
 venv
 .venv/
 __pycache__/
 *.pyc
 
-# IDEs
 .idea/
 .idea
 .vscode/
+node_modules
 
-# OS metadata
 .DS_Store
 Thumbs.db
