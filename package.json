@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint static_lab/js/**/*.js",
+    "lint": "eslint web/js/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

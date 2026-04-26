@@ -1,0 +1,240 @@
+/* ── Скидання ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Змінні ── */
+:root {
+    --bg:        #f5f5f5;
+    --white:     #ffffff;
+    --border:    #e0e0e0;
+    --text:      #1a1a1a;
+    --text-dim:  #666;
+    --primary:   #2563eb;
+    --primary-h: #1d4ed8;
+    --danger:    #dc2626;
+    --danger-h:  #b91c1c;
+    --radius:    6px;
+    --shadow:    0 2px 12px rgba(0,0,0,0.08);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ── Layout ── */
+.layout { display: flex; flex-direction: column; min-height: 100vh; }
+.layout__content { flex: 1; padding: 32px 40px; max-width: 1200px; width: 100%; margin: 0 auto; }
+
+/* ── Navbar ── */
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 40px;
+    height: 56px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.navbar__logo { font-weight: 700; font-size: 18px; color: var(--primary); }
+.navbar__nav { flex: 1; display: flex; gap: 4px; }
+
+.nav-link {
+    padding: 6px 14px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 14px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover { background: var(--bg); color: var(--text); }
+.nav-link--active { background: #eff6ff; color: var(--primary); font-weight: 500; }
+
+.navbar__user { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.navbar__username { font-weight: 500; }
+.navbar__role { font-size: 12px; color: var(--text-dim); background: var(--bg); padding: 2px 8px; border-radius: 20px; }
+
+/* ── Кнопки ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.btn--primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn--primary:hover:not(:disabled) { background: var(--primary-h); border-color: var(--primary-h); }
+.btn--primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn--danger { background: transparent; color: var(--danger); border-color: var(--danger); }
+.btn--danger:hover { background: #fef2f2; }
+
+.btn--outline { background: transparent; color: var(--text); border-color: var(--border); }
+.btn--outline:hover { border-color: #aaa; }
+
+.btn--sm { padding: 4px 10px; font-size: 13px; }
+.btn--full { width: 100%; justify-content: center; }
+
+/* ── Сторінка ── */
+.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.page-header__title { font-size: 22px; font-weight: 700; }
+.page-status { padding: 40px; text-align: center; color: var(--text-dim); }
+.page-status--error { color: var(--danger); }
+
+/* ── Таблиця ── */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+}
+
+.table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:hover { background: #fafafa; }
+.table__empty { text-align: center; color: var(--text-dim); padding: 32px !important; }
+
+/* ── Форми ── */
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field__label { font-size: 13px; font-weight: 500; color: var(--text-dim); }
+
+.field__input {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: var(--text);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+}
+
+.field__input:focus { border-color: var(--primary); }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-error { color: var(--danger); font-size: 13px; padding: 8px 12px; background: #fef2f2; border-radius: var(--radius); }
+
+/* ── Модалка ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+}
+
+.modal {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal__title { font-size: 17px; font-weight: 600; }
+
+.modal__close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--text-dim);
+    padding: 4px;
+    line-height: 1;
+}
+
+.modal__close:hover { color: var(--text); }
+
+.modal__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 24px;
+}
+
+.modal__actions { display: flex; gap: 8px; padding-top: 4px; }
+
+/* ── Логін ── */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+}
+
+.login-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 40px 36px;
+    width: 360px;
+}
+
+.login-card__title { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+.login-card__subtitle { color: var(--text-dim); margin-bottom: 28px; }
+.login-form { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── Бейджі ── */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 6px;
+}
+
+.badge--admin    { background: #eff6ff; color: #2563eb; }
+.badge--manager  { background: #f0fdf4; color: #16a34a; }
+.badge--active   { background: #f0fdf4; color: #16a34a; }
+.badge--inactive { background: #fef2f2; color: #dc2626; }
+.badge--me       { background: #fef9c3; color: #854d0e; }
+
+/* ── Підказка під полем ── */
+.field__hint { font-size: 12px; color: var(--text-dim); margin-top: 2px; }

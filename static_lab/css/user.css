@@ -1,0 +1,134 @@
+.create-user-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+.create-user-page .create-user-form {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+.create-user-page .create-user-form h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.create-user-page .create-user-form__field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.create-user-page .create-user-form__field label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.create-user-page .create-user-form__field input, .create-user-page .create-user-form__field select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.3s ease-in-out;
+}
+.create-user-page .create-user-form__field input:focus, .create-user-page .create-user-form__field select:focus {
+  border-color: #3498db;
+  outline: none;
+}
+.create-user-page .create-user-form__actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 10px;
+}
+.create-user-page .create-user-form__actions button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+.create-user-page .create-user-form__actions button[type=submit] {
+  background-color: #3498db;
+  color: #ffffff;
+}
+.create-user-page .create-user-form__actions button[type=submit]:hover {
+  background-color: rgb(33.1380753138, 125.1882845188, 186.8619246862);
+}
+.create-user-page .create-user-form__actions button[type=button] {
+  background-color: #ccc;
+}
+.create-user-page .create-user-form__actions button[type=button]:hover {
+  background-color: rgb(178.5, 178.5, 178.5);
+}
+.create-user-page .create-user-form__error {
+  color: #dc3545;
+  text-align: center;
+  margin-top: 1rem;
+  display: block;
+  font-size: 0.85rem;
+}
+
+.btn-delete-action {
+  background-color: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.btn-delete-action:hover {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
+  border-top: 5px solid #dc3545;
+}
+.modal-content h3 {
+  color: #2c3e50;
+}
+.modal-content p {
+  margin: 20px 0;
+  color: #333;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+}
+.modal-actions .btn-confirm-delete {
+  background-color: #dc3545;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.modal-actions .btn-confirm-delete:hover {
+  background-color: rgb(189.2151898734, 32.7848101266, 47.7721518987);
+}/*# sourceMappingURL=user.css.map */

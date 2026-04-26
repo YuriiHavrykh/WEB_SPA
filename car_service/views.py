@@ -76,9 +76,10 @@ class UserViewSet(viewsets.ViewSet):
         if role:
             user.is_staff = (role == 'admin')
 
-        is_active = request.data.get('isActive')
-        if is_active is not None:
-            user.is_active = bool(is_active)
+        # Дозволяємо змінювати статус тільки не для себе
+        is_active = request.data.get("isActive")
+        if is_active is not None and user != request.user:
+            user.is_active = is_active in (True, "true", "True")
 
         new_password = request.data.get('password', '').strip()
         if new_password:
