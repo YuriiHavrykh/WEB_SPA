@@ -5,6 +5,8 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
+        "test": "react-scripts test",
+        "test:coverage": "react-scripts test --watchAll=false --coverage",
         "lint": "eslint src --max-warnings=0"
     },
     "dependencies": {
@@ -14,29 +16,68 @@
         "react-scripts": "5.0.1"
     },
     "devDependencies": {
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^14.6.1",
         "eslint": "^8.57.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-jsx-a11y": "^6.8.0",
         "eslint-plugin-react": "^7.34.1",
-        "eslint-plugin-react-hooks": "^4.6.0"
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "jest": "^27.5.1",
+        "jest-environment-jsdom": "^27.5.1"
+    },
+    "jest": {
+        "coverageThreshold": {
+            "global": {
+                "lines": 70,
+                "statements": 70
+            }
+        }
     },
     "eslintConfig": {
-    "root": true,
-    "extends": ["airbnb"],
-    "rules": {
-        "indent": ["error", 4],
-        "react/jsx-indent": ["error", 4],
-        "react/jsx-indent-props": ["error", 4],
-        "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
-        "jsx-a11y/label-has-associated-control": "off",
-        "no-console": "warn",
-        "react/prop-types": "warn"
-    }
-},
+        "root": true,
+        "extends": [
+            "airbnb"
+        ],
+        "rules": {
+            "indent": [
+                "error",
+                4
+            ],
+            "react/jsx-indent": [
+                "error",
+                4
+            ],
+            "react/jsx-indent-props": [
+                "error",
+                4
+            ],
+            "react/jsx-filename-extension": [
+                "warn",
+                {
+                    "extensions": [
+                        ".js",
+                        ".jsx"
+                    ]
+                }
+            ],
+            "jsx-a11y/label-has-associated-control": "off",
+            "no-console": "warn",
+            "react/prop-types": "warn"
+        }
+    },
     "browserslist": {
-        "production": [">0.2%", "not dead", "not op_mini all"],
-        "development": ["last 2 chrome versions", "last 2 firefox versions"]
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 2 chrome versions",
+            "last 2 firefox versions"
+        ]
     },
     "proxy": "http://127.0.0.1:8000"
 }

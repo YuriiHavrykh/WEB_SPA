@@ -26,12 +26,23 @@ export function AuthProvider({ children }) {
         setUser(null);
     };
 
+    // Прив'язка менеджера до конкретного СТО (зберігається разом з auth)
+    const setCenter = (centerId) => {
+        setUser((prev) => {
+            const updated = { ...prev, centerId };
+            localStorage.setItem('auth', JSON.stringify(updated));
+            return updated;
+        });
+    };
+
     const value = useMemo(() => ({
         user,
         login,
         logout,
+        setCenter,
         isAuthenticated: !!user,
         isAdmin: user?.role === 'admin',
+        centerId: user?.centerId ?? null,
         credentials: user ? { username: user.username, password: user.password } : null,
     }), [user]);
 

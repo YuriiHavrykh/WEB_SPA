@@ -66,7 +66,34 @@ class RepairSerialize(serializers.ModelSerializer):
     class Meta:
         model = Repair
         fields = '__all__'
-        depth = 1
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        if instance.idCar:
+            response['idCar'] = {
+                'idCar': instance.idCar.idCar,
+                'brand': instance.idCar.brand,
+                'model': instance.idCar.model,
+                'yearOfRelease': instance.idCar.yearOfRelease,
+                'vin': instance.idCar.vin,
+                'licensePlate': instance.idCar.licensePlate,
+            }
+        if instance.idClient:
+            response['idClient'] = {
+                'idClient': instance.idClient.idClient,
+                'firstName': instance.idClient.firstName,
+                'lastName': instance.idClient.lastName,
+                'phoneNumber': instance.idClient.phoneNumber,
+                'email': instance.idClient.email,
+            }
+        if instance.idServiceCenter:
+            response['idServiceCenter'] = {
+                'idServiceCenter': instance.idServiceCenter.idServiceCenter,
+                'name': instance.idServiceCenter.name,
+                'address': instance.idServiceCenter.address,
+                'phoneNumber': instance.idServiceCenter.phoneNumber,
+            }
+        return response
 
 
 class RepairDetailSerializer(serializers.ModelSerializer):

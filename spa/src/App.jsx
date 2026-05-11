@@ -7,6 +7,12 @@ import PrivateRoute from './components/PrivateRoute';
 import Layout from './components/Layout';
 import LoginPage from './pages/LoginPage';
 import UsersPage from './pages/UsersPage';
+import EmployeesPage from './pages/EmployeesPage';
+import ClientsPage from './pages/ClientsPage';
+import CarsPage from './pages/CarsPage';
+import RepairsPage from './pages/RepairsPage';
+import PartsPage from './pages/PartsPage';
+import CentersPage from './pages/CentersPage';
 import './styles/index.css';
 
 function App() {
@@ -14,10 +20,8 @@ function App() {
         <AuthProvider>
             <BrowserRouter>
                 <Routes>
-                    {/* Публічний маршрут */}
                     <Route path="/login" element={<LoginPage />} />
 
-                    {/* Захищені маршрути */}
                     <Route
                         path="/"
                         element={(
@@ -26,12 +30,17 @@ function App() {
                             </PrivateRoute>
                         )}
                     >
-                        <Route index element={<Navigate to="/users" replace />} />
+                        <Route index element={<Navigate to="/repairs" replace />} />
                         <Route path="users" element={<UsersPage />} />
+                        <Route path="employees" element={<EmployeesPage />} />
+                        <Route path="clients" element={<ClientsPage />} />
+                        <Route path="cars" element={<CarsPage />} />
+                        <Route path="repairs" element={<RepairsPage />} />
+                        <Route path="parts" element={<PartsPage />} />
+                        <Route path="centers" element={<CentersPage />} />
                     </Route>
 
-                    {/* Будь-який інший шлях — на users */}
-                    <Route path="*" element={<Navigate to="/users" replace />} />
+                    <Route path="*" element={<Navigate to="/repairs" replace />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

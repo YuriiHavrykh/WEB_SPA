@@ -123,6 +123,7 @@ class UserViewSet(viewsets.ViewSet):
 # ── Базовий ViewSet для решти ресурсів ───────────────────────────────────────
 
 class BaseViewSet(viewsets.ViewSet):
+    pagination_class = StandardResultsSetPagination
     serializer_class = None
     repo = None
     authentication_classes = [BasicAuthentication]
